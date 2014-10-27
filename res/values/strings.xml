@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">IndigoKernal</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="logo">Logo</string>
+    <string name="appid">5</string>
+
+</resources>

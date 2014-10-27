@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.thoughtripples.indigokernal"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="19" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- GCM requires a Google account. -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- Creates a custom permission so only this app can receive its messages. -->
+    <permission
+        android:name="com.thoughtripples.indigokernal.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+ 
+    <uses-permission android:name="com.thoughtripples.indigokernal.permission.C2D_MESSAGE" />
+ 
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> 
+ 
+
+    <application 
+        android:name="com.thoughtripples.indigokernal.app.AppController"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".Flash"
+            android:label="@string/app_name"
+			android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="DashBoard"></activity>
+        <activity android:name="Menus"></activity>
+        <activity android:name="GeneralProfile">
+            <intent-filter>
+                <action android:name="general_profile"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="Gallery">
+            <intent-filter>
+                <action android:name="gallery"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="Messages">
+            <intent-filter>
+                <action android:name="message"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>            
+         </activity>
+        <activity android:name="Contacts">
+            <intent-filter>
+                <action android:name="contacts"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>            
+         </activity>
+        <activity android:name="WebActivity">
+            <intent-filter>
+                <action android:name="html"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>            
+         </activity>
+         <receiver
+            android:name="com.google.android.gcm.GCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+ 
+                <!-- Receives the actual messages. -->
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <!-- Receives the registration id. -->
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+ 
+                <category android:name="com.thoughtripples.indigokernal" />
+            </intent-filter>
+        </receiver>
+ 
+        <service android:name="com.thoughtripples.indigokernal.services.GCMIntentService" />
+        <provider android:name=".data.MyDataContentProvider" android:authorities="com.thoughtripples.indigokernal"></provider>
+    </application>
+
+</manifest>
